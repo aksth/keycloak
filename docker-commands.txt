@@ -1,0 +1,57 @@
+docker run --rm  \
+   --name keycloak \
+   -e KEYCLOAK_USER=admin \
+   -e KEYCLOAK_PASSWORD=admin \
+   -e KEYCLOAK_IMPORT=/home/akash/Downloads/initial-config.json  -v /home/akash/Downloads/initial-config.json:/home/akash/Downloads/initial-config.json \
+   -p 8180:8180 \
+   -it quay.io/keycloak/keycloak:latest \
+   -b 0.0.0.0 \
+   -Djboss.http.port=8180 \
+   -Dkeycloak.profile.feature.upload_scripts=enabled
+
+
+docker run  \
+--name keycloak \
+-e KEYCLOAK_USER=admin \
+-e KEYCLOAK_PASSWORD=admin \
+-e KEYCLOAK_IMPORT=/home/akash/Downloads/initial-config.json  -v /home/akash/Downloads/initial-config.json:/home/akash/Downloads/initial-config.json \
+-p 8180:8180 \
+-it quay.io/keycloak/keycloak:latest \
+-b 0.0.0.0 \
+-Djboss.http.port=8180 \
+-Dkeycloak.profile.feature.upload_scripts=enabled
+
+docker run  \
+--name keycloak \
+-e KEYCLOAK_USER=admin \
+-e KEYCLOAK_PASSWORD=admin \
+-p 8180:8180 \
+-it quay.io/keycloak/keycloak:latest \
+-b 0.0.0.0 \
+-Djboss.http.port=8180
+
+docker run \
+--name ps-security \
+-e KEYCLOAK_USER=admin \
+-e KEYCLOAK_PASSWORD=admin \
+
+docker run  \
+--name keycloak \
+--network redash_default \
+-e KEYCLOAK_USER=admin \
+-e KEYCLOAK_PASSWORD=admin \
+-p 8180:8180 \
+jboss/keycloak
+
+docker run  \
+--name keycloak9080 \
+-e KEYCLOAK_USER=admin \
+-e KEYCLOAK_PASSWORD=admin \
+-p 8180:8180 \
+jboss/keycloak
+
+8080 is the internal port in new jboss/keycloak
+
+===
+
+docker run -e JAVA_OPTS="-Dkeycloak.profile.feature.scripts=enabled -Dkeycloak.profile.feature.upload_scripts=enabled" -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e KEYCLOAK_IMPORT=/tmp/example-realm.json -v /tmp/example-realm.json:/tmp/example-realm.json --name keycloak2 -p 8181:8080 jboss/keycloak
